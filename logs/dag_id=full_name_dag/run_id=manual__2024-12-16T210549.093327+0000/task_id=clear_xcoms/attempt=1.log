@@ -1,0 +1,23 @@
+[2024-12-16T21:05:55.381+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: full_name_dag.clear_xcoms manual__2024-12-16T21:05:49.093327+00:00 [queued]>
+[2024-12-16T21:05:55.472+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: full_name_dag.clear_xcoms manual__2024-12-16T21:05:49.093327+00:00 [queued]>
+[2024-12-16T21:05:55.473+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2024-12-16T21:05:55.485+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): clear_xcoms> on 2024-12-16 21:05:49.093327+00:00
+[2024-12-16T21:05:55.489+0000] {standard_task_runner.py:57} INFO - Started process 9132 to run task
+[2024-12-16T21:05:55.491+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'full_name_dag', 'clear_xcoms', 'manual__2024-12-16T21:05:49.093327+00:00', '--job-id', '100', '--raw', '--subdir', 'DAGS_FOLDER/full_name_dag.py', '--cfg-path', '/tmp/tmp4z30ukez']
+[2024-12-16T21:05:55.493+0000] {standard_task_runner.py:85} INFO - Job 100: Subtask clear_xcoms
+[2024-12-16T21:05:55.509+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-16T21:05:55.544+0000] {task_command.py:415} INFO - Running <TaskInstance: full_name_dag.clear_xcoms manual__2024-12-16T21:05:49.093327+00:00 [running]> on host cfbf61ae1f16
+[2024-12-16T21:05:55.619+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='full_name_dag' AIRFLOW_CTX_TASK_ID='clear_xcoms' AIRFLOW_CTX_EXECUTION_DATE='2024-12-16T21:05:49.093327+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-16T21:05:49.093327+00:00'
+[2024-12-16T21:05:55.621+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/full_name_dag.py", line 77, in clear_xcoms
+    task_instance.xcom_clear(task_ids='extract_data', dag_id=kwargs['dag'].dag_id, execution_date=kwargs['execution_date'])
+AttributeError: 'TaskInstance' object has no attribute 'xcom_clear'
+[2024-12-16T21:05:55.633+0000] {taskinstance.py:1398} INFO - Marking task as UP_FOR_RETRY. dag_id=full_name_dag, task_id=clear_xcoms, execution_date=20241216T210549, start_date=20241216T210555, end_date=20241216T210555
+[2024-12-16T21:05:55.646+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 100 for task clear_xcoms ('TaskInstance' object has no attribute 'xcom_clear'; 9132)
+[2024-12-16T21:05:55.664+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-12-16T21:05:55.679+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

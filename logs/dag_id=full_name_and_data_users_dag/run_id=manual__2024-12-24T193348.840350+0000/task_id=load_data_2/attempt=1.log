@@ -1,0 +1,15 @@
+[2024-12-24T19:33:52.858+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: full_name_and_data_users_dag.load_data_2 manual__2024-12-24T19:33:48.840350+00:00 [queued]>
+[2024-12-24T19:33:52.865+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: full_name_and_data_users_dag.load_data_2 manual__2024-12-24T19:33:48.840350+00:00 [queued]>
+[2024-12-24T19:33:52.866+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2024-12-24T19:33:52.878+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): load_data_2> on 2024-12-24 19:33:48.840350+00:00
+[2024-12-24T19:33:52.882+0000] {standard_task_runner.py:57} INFO - Started process 3277 to run task
+[2024-12-24T19:33:52.885+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'full_name_and_data_users_dag', 'load_data_2', 'manual__2024-12-24T19:33:48.840350+00:00', '--job-id', '204', '--raw', '--subdir', 'DAGS_FOLDER/full_name_data_users_dag.py', '--cfg-path', '/tmp/tmpeyjo9bkp']
+[2024-12-24T19:33:52.887+0000] {standard_task_runner.py:85} INFO - Job 204: Subtask load_data_2
+[2024-12-24T19:33:52.907+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-24T19:33:52.940+0000] {task_command.py:415} INFO - Running <TaskInstance: full_name_and_data_users_dag.load_data_2 manual__2024-12-24T19:33:48.840350+00:00 [running]> on host e335f8873093
+[2024-12-24T19:33:53.024+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='full_name_and_data_users_dag' AIRFLOW_CTX_TASK_ID='load_data_2' AIRFLOW_CTX_EXECUTION_DATE='2024-12-24T19:33:48.840350+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-24T19:33:48.840350+00:00'
+[2024-12-24T19:33:53.283+0000] {base.py:73} INFO - Using connection ID 'admin' for task execution.
+[2024-12-24T19:33:56.361+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-12-24T19:33:56.371+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=full_name_and_data_users_dag, task_id=load_data_2, execution_date=20241224T193348, start_date=20241224T193352, end_date=20241224T193356
+[2024-12-24T19:33:56.386+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-12-24T19:33:56.403+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

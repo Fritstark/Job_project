@@ -1,0 +1,98 @@
+[2024-12-17T15:38:02.865+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: main_dag.сreate_tables manual__2024-12-17T15:38:01.007779+00:00 [queued]>
+[2024-12-17T15:38:02.871+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: main_dag.сreate_tables manual__2024-12-17T15:38:01.007779+00:00 [queued]>
+[2024-12-17T15:38:02.872+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2024-12-17T15:38:02.883+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): сreate_tables> on 2024-12-17 15:38:01.007779+00:00
+[2024-12-17T15:38:02.887+0000] {standard_task_runner.py:57} INFO - Started process 2206 to run task
+[2024-12-17T15:38:02.890+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'main_dag', 'сreate_tables', 'manual__2024-12-17T15:38:01.007779+00:00', '--job-id', '154', '--raw', '--subdir', 'DAGS_FOLDER/main_dag.py', '--cfg-path', '/tmp/tmp0qvr8nx_']
+[2024-12-17T15:38:02.892+0000] {standard_task_runner.py:85} INFO - Job 154: Subtask сreate_tables
+[2024-12-17T15:38:02.907+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-17T15:38:02.938+0000] {task_command.py:415} INFO - Running <TaskInstance: main_dag.сreate_tables manual__2024-12-17T15:38:01.007779+00:00 [running]> on host 00b941a4a1a3
+[2024-12-17T15:38:03.017+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='main_dag' AIRFLOW_CTX_TASK_ID='сreate_tables' AIRFLOW_CTX_EXECUTION_DATE='2024-12-17T15:38:01.007779+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-17T15:38:01.007779+00:00'
+[2024-12-17T15:38:03.026+0000] {base.py:73} INFO - Using connection ID 'admin' for task execution.
+[2024-12-17T15:38:03.098+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InvalidForeignKey: there is no unique constraint matching given keys for referenced table "inventory"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/main_dag.py", line 112, in get_db_engine
+    Base.metadata.create_all(engine)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/schema.py", line 4930, in create_all
+    bind._run_ddl_visitor(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3238, in _run_ddl_visitor
+    conn._run_ddl_visitor(visitorcallable, element, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2221, in _run_ddl_visitor
+    visitorcallable(self.dialect, self, **kwargs).traverse_single(element)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/visitors.py", line 524, in traverse_single
+    return meth(obj, **kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/ddl.py", line 855, in visit_metadata
+    self.traverse_single(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/visitors.py", line 524, in traverse_single
+    return meth(obj, **kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/ddl.py", line 899, in visit_table
+    self.connection.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1385, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/ddl.py", line 80, in _execute_on_connection
+    return connection._execute_ddl(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1477, in _execute_ddl
+    ret = self._execute_context(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.InvalidForeignKey) there is no unique constraint matching given keys for referenced table "inventory"
+
+[SQL: 
+CREATE TABLE shift_table (
+	num SERIAL NOT NULL, 
+	tab_id INTEGER, 
+	sector INTEGER, 
+	object INTEGER, 
+	change INTEGER, 
+	address VARCHAR, 
+	date DATE, 
+	PRIMARY KEY (num), 
+	FOREIGN KEY(tab_id) REFERENCES full_name (tab_id), 
+	FOREIGN KEY(object) REFERENCES inventory (object)
+)
+
+]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+[2024-12-17T15:38:03.111+0000] {taskinstance.py:1398} INFO - Marking task as UP_FOR_RETRY. dag_id=main_dag, task_id=сreate_tables, execution_date=20241217T153801, start_date=20241217T153802, end_date=20241217T153803
+[2024-12-17T15:38:03.120+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 154 for task сreate_tables ((psycopg2.errors.InvalidForeignKey) there is no unique constraint matching given keys for referenced table "inventory"
+
+[SQL: 
+CREATE TABLE shift_table (
+	num SERIAL NOT NULL, 
+	tab_id INTEGER, 
+	sector INTEGER, 
+	object INTEGER, 
+	change INTEGER, 
+	address VARCHAR, 
+	date DATE, 
+	PRIMARY KEY (num), 
+	FOREIGN KEY(tab_id) REFERENCES full_name (tab_id), 
+	FOREIGN KEY(object) REFERENCES inventory (object)
+)
+
+]
+(Background on this error at: https://sqlalche.me/e/14/f405); 2206)
+[2024-12-17T15:38:03.143+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-12-17T15:38:03.159+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

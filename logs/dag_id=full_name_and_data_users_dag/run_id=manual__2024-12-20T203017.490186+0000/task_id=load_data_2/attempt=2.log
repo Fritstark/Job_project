@@ -1,0 +1,92 @@
+[2024-12-20T20:35:23.321+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: full_name_and_data_users_dag.load_data_2 manual__2024-12-20T20:30:17.490186+00:00 [queued]>
+[2024-12-20T20:35:23.412+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: full_name_and_data_users_dag.load_data_2 manual__2024-12-20T20:30:17.490186+00:00 [queued]>
+[2024-12-20T20:35:23.413+0000] {taskinstance.py:1359} INFO - Starting attempt 2 of 2
+[2024-12-20T20:35:23.426+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): load_data_2> on 2024-12-20 20:30:17.490186+00:00
+[2024-12-20T20:35:23.430+0000] {standard_task_runner.py:57} INFO - Started process 4343 to run task
+[2024-12-20T20:35:23.433+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'full_name_and_data_users_dag', 'load_data_2', 'manual__2024-12-20T20:30:17.490186+00:00', '--job-id', '176', '--raw', '--subdir', 'DAGS_FOLDER/full_name_data_users_dag.py', '--cfg-path', '/tmp/tmp_cm5m12l']
+[2024-12-20T20:35:23.435+0000] {standard_task_runner.py:85} INFO - Job 176: Subtask load_data_2
+[2024-12-20T20:35:23.451+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-20T20:35:23.487+0000] {task_command.py:415} INFO - Running <TaskInstance: full_name_and_data_users_dag.load_data_2 manual__2024-12-20T20:30:17.490186+00:00 [running]> on host 150cfac62d06
+[2024-12-20T20:35:23.564+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='full_name_and_data_users_dag' AIRFLOW_CTX_TASK_ID='load_data_2' AIRFLOW_CTX_EXECUTION_DATE='2024-12-20T20:30:17.490186+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-20T20:30:17.490186+00:00'
+[2024-12-20T20:35:23.856+0000] {base.py:73} INFO - Using connection ID 'admin' for task execution.
+[2024-12-20T20:35:23.916+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.NumericValueOutOfRange: integer out of range
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/full_name_data_users_dag.py", line 85, in load_data_to_db_2
+    record = session.query(DataUsers).filter_by(tab_id=row['tab_id']).first()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2824, in first
+    return self.limit(1)._iter().first()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1665, in execute
+    ) = compile_state_cls.orm_pre_session_exec(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/context.py", line 312, in orm_pre_session_exec
+    session._autoflush()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2264, in _autoflush
+    util.raise_(e, with_traceback=sys.exc_info()[2])
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2253, in _autoflush
+    self.flush()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3449, in flush
+    self._flush(objects)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3589, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 3549, in _flush
+    flush_context.execute()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
+    _emit_insert_statements(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1097, in _emit_insert_statements
+    c = connection._execute_20(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.DataError: (raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(psycopg2.errors.NumericValueOutOfRange) integer out of range
+
+[SQL: INSERT INTO data_users (tab_id, sector, change, phone, job_title, num_ud, date_birth, address) VALUES (%(tab_id)s, %(sector)s, %(change)s, %(phone)s, %(job_title)s, %(num_ud)s, %(date_birth)s, %(address)s)]
+[parameters: {'tab_id': 100, 'sector': 500, 'change': 1, 'phone': 89300762206, 'job_title': 'старший инспектор', 'num_ud': 'РОР №27500', 'date_birth': datetime.date(1980, 1, 1), 'address': 'Казань'}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h)
+[2024-12-20T20:35:23.938+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=full_name_and_data_users_dag, task_id=load_data_2, execution_date=20241220T203017, start_date=20241220T203523, end_date=20241220T203523
+[2024-12-20T20:35:23.955+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 176 for task load_data_2 ((raised as a result of Query-invoked autoflush; consider using a session.no_autoflush block if this flush is occurring prematurely)
+(psycopg2.errors.NumericValueOutOfRange) integer out of range
+
+[SQL: INSERT INTO data_users (tab_id, sector, change, phone, job_title, num_ud, date_birth, address) VALUES (%(tab_id)s, %(sector)s, %(change)s, %(phone)s, %(job_title)s, %(num_ud)s, %(date_birth)s, %(address)s)]
+[parameters: {'tab_id': 100, 'sector': 500, 'change': 1, 'phone': 89300762206, 'job_title': 'старший инспектор', 'num_ud': 'РОР №27500', 'date_birth': datetime.date(1980, 1, 1), 'address': 'Казань'}]
+(Background on this error at: https://sqlalche.me/e/14/9h9h); 4343)
+[2024-12-20T20:35:23.967+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-12-20T20:35:23.987+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

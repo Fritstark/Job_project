@@ -1,0 +1,44 @@
+[2024-12-17T09:30:22.367+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: shift_table_dag.shift_table_dag manual__2024-12-17T09:30:21.275874+00:00 [queued]>
+[2024-12-17T09:30:22.449+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: shift_table_dag.shift_table_dag manual__2024-12-17T09:30:21.275874+00:00 [queued]>
+[2024-12-17T09:30:22.450+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2024-12-17T09:30:22.462+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): shift_table_dag> on 2024-12-17 09:30:21.275874+00:00
+[2024-12-17T09:30:22.470+0000] {standard_task_runner.py:57} INFO - Started process 13347 to run task
+[2024-12-17T09:30:22.474+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'shift_table_dag', 'shift_table_dag', 'manual__2024-12-17T09:30:21.275874+00:00', '--job-id', '148', '--raw', '--subdir', 'DAGS_FOLDER/shift_table_dag.py', '--cfg-path', '/tmp/tmp0wpr4fup']
+[2024-12-17T09:30:22.478+0000] {standard_task_runner.py:85} INFO - Job 148: Subtask shift_table_dag
+[2024-12-17T09:30:22.496+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-17T09:30:22.528+0000] {task_command.py:415} INFO - Running <TaskInstance: shift_table_dag.shift_table_dag manual__2024-12-17T09:30:21.275874+00:00 [running]> on host cfbf61ae1f16
+[2024-12-17T09:30:22.609+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='shift_table_dag' AIRFLOW_CTX_TASK_ID='shift_table_dag' AIRFLOW_CTX_EXECUTION_DATE='2024-12-17T09:30:21.275874+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-17T09:30:21.275874+00:00'
+[2024-12-17T09:30:22.731+0000] {base.py:73} INFO - Using connection ID 'admin' for task execution.
+[2024-12-17T09:30:22.752+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/shift_table_dag.py", line 48, in process_excel_to_db
+    Base.metadata.create_all(engine)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/schema.py", line 4930, in create_all
+    bind._run_ddl_visitor(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3238, in _run_ddl_visitor
+    conn._run_ddl_visitor(visitorcallable, element, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2221, in _run_ddl_visitor
+    visitorcallable(self.dialect, self, **kwargs).traverse_single(element)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/visitors.py", line 524, in traverse_single
+    return meth(obj, **kw)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/ddl.py", line 831, in visit_metadata
+    collection = sort_tables_and_constraints(
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/ddl.py", line 1295, in sort_tables_and_constraints
+    dependent_on = fkc.referred_table
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/schema.py", line 3846, in referred_table
+    return self.elements[0].column.table
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 1113, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/schema.py", line 2532, in column
+    return self._resolve_column()
+  File "/home/airflow/.local/lib/python3.8/site-packages/sqlalchemy/sql/schema.py", line 2543, in _resolve_column
+    raise exc.NoReferencedTableError(
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'shift_table.tab_id' could not find table 'tab_id' with which to generate a foreign key to target column 'None'
+[2024-12-17T09:30:22.765+0000] {taskinstance.py:1398} INFO - Marking task as UP_FOR_RETRY. dag_id=shift_table_dag, task_id=shift_table_dag, execution_date=20241217T093021, start_date=20241217T093022, end_date=20241217T093022
+[2024-12-17T09:30:22.774+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 148 for task shift_table_dag (Foreign key associated with column 'shift_table.tab_id' could not find table 'tab_id' with which to generate a foreign key to target column 'None'; 13347)
+[2024-12-17T09:30:22.807+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-12-17T09:30:22.821+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

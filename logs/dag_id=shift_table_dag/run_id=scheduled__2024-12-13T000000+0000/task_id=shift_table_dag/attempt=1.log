@@ -1,0 +1,36 @@
+[2024-12-13T13:03:46.522+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: shift_table_dag.shift_table_dag scheduled__2024-12-13T00:00:00+00:00 [queued]>
+[2024-12-13T13:03:46.528+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: shift_table_dag.shift_table_dag scheduled__2024-12-13T00:00:00+00:00 [queued]>
+[2024-12-13T13:03:46.529+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2024-12-13T13:03:46.541+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): shift_table_dag> on 2024-12-13 00:00:00+00:00
+[2024-12-13T13:03:46.546+0000] {standard_task_runner.py:57} INFO - Started process 3060 to run task
+[2024-12-13T13:03:46.549+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'shift_table_dag', 'shift_table_dag', 'scheduled__2024-12-13T00:00:00+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/my_first_dag.py', '--cfg-path', '/tmp/tmp8xmzfkma']
+[2024-12-13T13:03:46.552+0000] {standard_task_runner.py:85} INFO - Job 12: Subtask shift_table_dag
+[2024-12-13T13:03:46.571+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-13T13:03:46.613+0000] {task_command.py:415} INFO - Running <TaskInstance: shift_table_dag.shift_table_dag scheduled__2024-12-13T00:00:00+00:00 [running]> on host 0406bded5f12
+[2024-12-13T13:03:46.705+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='shift_table_dag' AIRFLOW_CTX_TASK_ID='shift_table_dag' AIRFLOW_CTX_EXECUTION_DATE='2024-12-13T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-13T00:00:00+00:00'
+[2024-12-13T13:03:46.913+0000] {logging_mixin.py:151} WARNING - /opt/***/dags/my_first_dag.py:40 UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+[2024-12-13T13:03:46.916+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/my_first_dag.py", line 40, in process_excel_to_db
+    df['date'] = pd.to_datetime(df['date'])  # Если в Excel дата хранится в строковом формате
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/tools/datetimes.py", line 1050, in to_datetime
+    values = convert_listlike(arg._values, format)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/tools/datetimes.py", line 455, in _convert_listlike_datetimes
+    result, tz_parsed = objects_to_datetime64ns(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/arrays/datetimes.py", line 2177, in objects_to_datetime64ns
+    result, tz_parsed = tslib.array_to_datetime(
+  File "pandas/_libs/tslib.pyx", line 402, in pandas._libs.tslib.array_to_datetime
+  File "pandas/_libs/tslib.pyx", line 551, in pandas._libs.tslib.array_to_datetime
+  File "pandas/_libs/tslib.pyx", line 516, in pandas._libs.tslib.array_to_datetime
+  File "pandas/_libs/tslibs/conversion.pyx", line 557, in pandas._libs.tslibs.conversion.convert_str_to_tsobject
+  File "pandas/_libs/tslibs/parsing.pyx", line 329, in pandas._libs.tslibs.parsing.parse_datetime_string
+  File "pandas/_libs/tslibs/parsing.pyx", line 658, in pandas._libs.tslibs.parsing.dateutil_parse
+pandas._libs.tslibs.parsing.DateParseError: Unknown datetime string format, unable to parse: we, at position 0
+[2024-12-13T13:03:46.932+0000] {taskinstance.py:1398} INFO - Marking task as UP_FOR_RETRY. dag_id=shift_table_dag, task_id=shift_table_dag, execution_date=20241213T000000, start_date=20241213T130346, end_date=20241213T130346
+[2024-12-13T13:03:46.944+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 12 for task shift_table_dag (Unknown datetime string format, unable to parse: we, at position 0; 3060)
+[2024-12-13T13:03:46.962+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-12-13T13:03:46.979+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

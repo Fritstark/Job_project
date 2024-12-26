@@ -1,0 +1,14 @@
+[2024-12-16T21:05:50.869+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: full_name_dag.extract_data manual__2024-12-16T21:05:49.093327+00:00 [queued]>
+[2024-12-16T21:05:50.952+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: full_name_dag.extract_data manual__2024-12-16T21:05:49.093327+00:00 [queued]>
+[2024-12-16T21:05:50.953+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2024-12-16T21:05:50.964+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): extract_data> on 2024-12-16 21:05:49.093327+00:00
+[2024-12-16T21:05:50.967+0000] {standard_task_runner.py:57} INFO - Started process 9120 to run task
+[2024-12-16T21:05:50.970+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'full_name_dag', 'extract_data', 'manual__2024-12-16T21:05:49.093327+00:00', '--job-id', '98', '--raw', '--subdir', 'DAGS_FOLDER/full_name_dag.py', '--cfg-path', '/tmp/tmpesvu19_i']
+[2024-12-16T21:05:50.971+0000] {standard_task_runner.py:85} INFO - Job 98: Subtask extract_data
+[2024-12-16T21:05:50.987+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-12-16T21:05:51.021+0000] {task_command.py:415} INFO - Running <TaskInstance: full_name_dag.extract_data manual__2024-12-16T21:05:49.093327+00:00 [running]> on host cfbf61ae1f16
+[2024-12-16T21:05:51.093+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='full_name_dag' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-16T21:05:49.093327+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-16T21:05:49.093327+00:00'
+[2024-12-16T21:05:51.274+0000] {python.py:194} INFO - Done. Returned value was: None
+[2024-12-16T21:05:51.284+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=full_name_dag, task_id=extract_data, execution_date=20241216T210549, start_date=20241216T210550, end_date=20241216T210551
+[2024-12-16T21:05:51.303+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2024-12-16T21:05:51.324+0000] {taskinstance.py:2776} INFO - 1 downstream tasks scheduled from follow-on schedule check
